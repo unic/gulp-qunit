@@ -126,6 +126,36 @@ describe('gulp-qunit', function() {
         stream.end();
     });
 
+    it('tests should set custom viewport', function(done) {
+        var stream = qunit({
+                page: {
+                    viewportSize: {
+                        width: 1000,
+                        height: 1000
+                    }
+                }
+            });
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            if (/1 passed. 0 failed./.test(str)) {
+                assert(true);
+                process.stdout.write = out;
+                done();
+            }
+        };
+
+        stream.on('error', function () {});
+
+        stream.write(new gutil.File({
+            path: './test/fixtures/custom-viewport.html',
+            contents: new Buffer('')
+        }));
+
+        stream.end();
+    });
+
     it('tests should not run when passing --help to PhantomJS', function(done) {
         var stream = qunit({'phantomjs-options': ['--help']});
 

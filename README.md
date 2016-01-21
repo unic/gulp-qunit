@@ -89,6 +89,13 @@ Default: require("phantomjs").path
 
 The option is used to execute phantomjs binary path
 
+#### options.page
+
+Type: `Object`  
+Default: `None`
+
+This option is used to set page properties like `viewportSize`. See the [PhantomJS documentation](http://phantomjs.org/api/webpage/property/viewport-size.html) for more information.
+
 ## License
 
 MIT © [Jonathan Kemp](http://jonkemp.com)
